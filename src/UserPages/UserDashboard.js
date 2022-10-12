@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useInsertionEffect } from "react";
 import axios from "axios";
 var locationid;
@@ -63,6 +63,42 @@ export default function UserDashboard() {
   };
 
   //---Get Providers
+  let navigate = useNavigate();
+  const [serviceProvider, setCategories] = useState({
+    aid: locationid,
+    sid: providerid,
+  });
+
+  const [serviceProviders, setCategoriesgetdata] = useState([]);
+
+  useInsertionEffect(() => {
+    onSubmit();
+  }, []);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    serviceProvider.aid = locationid;
+    serviceProvider.sid = providerid;
+    console.log("IN submit", serviceProvider.aid);
+    console.log("IN submit", serviceProvider.sid);
+    const result = await axios
+      .post(
+        "http://localhost:8080/getServiceProvidersCategories",
+        serviceProvider
+      )
+      .catch(function (error) {
+        if (error.response) {
+          alert("No Service Provider Categories found");
+          //  navigate("/userdashboard");
+        }
+      });
+    console.log(result.data);
+    // if(result.data)
+    setCategoriesgetdata(result.data);
+    // navigate("/userdashboard");
+    //Passing Data between components
+    //navigate("/userdashboard", { state: { login: result.data } });
+  };
 
   return (
     <div className="container">
@@ -87,26 +123,34 @@ export default function UserDashboard() {
           ))}
         </select>
       </div>
-
+      <div>
+        <button
+          type="submit"
+          className="btn btn-outline-primary"
+          onClick={onSubmit}
+        >
+          Submit
+        </button>
+      </div>
       <div className="py-4">
         <table className="table border shadow">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">sid</th>
-              <th scope="col">sname</th>
+              <th scope="col">Service</th>
+              <th scope="col">Price</th>
             </tr>
           </thead>
           {/*GetMapping*/}
 
           <tbody>
-            {providers.map((provider, index) => (
+            {serviceProviders.map((provider, index) => (
               <tr>
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{provider.sid}</td>
-                <td>{provider.sname}</td>
+                <td>{provider.categoryname}</td>
+                <td>{provider.price}</td>
 
                 <td>
                   <button className="btn btn-primary mx-2">View</button>
