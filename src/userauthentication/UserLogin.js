@@ -57,16 +57,16 @@ const loadUsers=async()=>{
     <div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">Register User</h2>
+          <h2 className="text-center m-4">User Login</h2>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
               <label htmlFor="emailid" className="form-label">
-                emailid
+                Email Id
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your emailid"
+                placeholder="Enter your Email Id"
                 name="emailid"
                 value={emailid}
                 onChange={(e) => onInputChange(e)}
@@ -74,12 +74,12 @@ const loadUsers=async()=>{
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
-                password
+                Password
               </label>
               <input
-                type={"text"}
+                type={"password"}
                 className="form-control"
-                placeholder="Enter your password"
+                placeholder="Enter your Password"
                 name="password"
                 value={password}
                 onChange={(e) => onInputChange(e)}

@@ -84,12 +84,12 @@ export default function RegisterUser() {
             </div>
             <div className="mb-3">
               <label htmlFor="lastname" className="form-label">
-                Username
+                Last Name
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your lastname"
+                placeholder="Enter your Last Name"
                 name="lastname"
                 value={lastname}
                 onChange={(e) => onInputChange(e)}
@@ -97,12 +97,12 @@ export default function RegisterUser() {
             </div>
             <div className="mb-3">
               <label htmlFor="mobileno" className="form-label">
-                mobileno
+                Mobile Number
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your mobileno"
+                placeholder="Enter your Mobile Number"
                 name="mobileno"
                 value={mobileno}
                 onChange={(e) => onInputChange(e)}
@@ -110,12 +110,12 @@ export default function RegisterUser() {
             </div>
             <div className="mb-3">
               <label htmlFor="emailid" className="form-label">
-                emailid
+                Email Id
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your emailid"
+                placeholder="Enter your Email Id"
                 name="emailid"
                 value={emailid}
                 onChange={(e) => onInputChange(e)}
@@ -123,12 +123,12 @@ export default function RegisterUser() {
             </div>
             <div className="mb-3">
               <label htmlFor="mobileno" className="form-label">
-                password
+                Password
               </label>
               <input
-                type={"text"}
+                type={"password"}
                 className="form-control"
-                placeholder="Enter your password"
+                placeholder="Enter your Password"
                 name="password"
                 value={password}
                 onChange={(e) => onInputChange(e)}
@@ -136,12 +136,12 @@ export default function RegisterUser() {
             </div>
             <div className="mb-3">
               <label htmlFor="confirmpassword" className="form-label">
-                confirmpassword
+                Confirm Password
               </label>
               <input
-                type={"text"}
+                type={"password"}
                 className="form-control"
-                placeholder="Enter your confirmpassword"
+                placeholder="Enter your Password Again"
                 name="confirmpassword"
                 value={confirmpassword}
                 onChange={(e) => onInputChange(e)}

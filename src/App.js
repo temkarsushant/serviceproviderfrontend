@@ -8,6 +8,7 @@ import LoginDashboard from "./userauthentication/LoginDashboard";
 import UserLogin from "./userauthentication/UserLogin";
 import AdminLogin from "./userauthentication/AdminLogin";
 import UserDashboard from "./UserPages/UserDashboard";
+import UserPayment from "./UserPages/UserPayment";
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/userlogin" element={<UserLogin />} />
           <Route exact path="/adminlogin" element={<AdminLogin />} />
           <Route exact path="/userdashboard" element={<UserDashboard />} />
+          <Route exact path="/userpayment" element={<UserPayment />} />
         </Routes>
       </Router>
     </div>
