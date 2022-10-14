@@ -1,10 +1,12 @@
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState, useInsertionEffect } from "react";
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import ImageTest from "../serviceprovider/reg6.png";
-import ImageTest2 from "../serviceprovider/reg2.png";
-export default function RegisterUser() {
+import ImageTest from "../serviceprovider/UserDash.png";
+export default function RegisterAdmin() {
+
+  
+
   let navigate = useNavigate();
   const [registration, setUser] = useState({
     firstname: "",
@@ -13,7 +15,7 @@ export default function RegisterUser() {
     emailid: "",
     password: "",
     confirmpassword: "",
-    usertype: "User",
+    usertype: "Admin",
   });
 
   const {
@@ -60,7 +62,7 @@ export default function RegisterUser() {
     } else {
       await axios.post("http://localhost:8080/registration", registration);
 
-      navigate("/");
+      navigate("/admindashboard");
     }
   };
 
@@ -73,14 +75,14 @@ export default function RegisterUser() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div align="right" >
+      <div align="right">
         <div className="row">
-          <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow" style={{ backgroundColor: "#F0FFFF" }}>
+          <div
+            className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow"
+            style={{ backgroundColor: "#F0FFFF" }}
+          >
             <h2 className="text-center m-4">Register User</h2>
-            <form
-              onSubmit={(e) => onSubmit(e)}
-              
-            >
+            <form onSubmit={(e) => onSubmit(e)}>
               <div className="mb-3">
                 <label htmlFor="Name" className="form-label"></label>
                 <input

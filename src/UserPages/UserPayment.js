@@ -87,18 +87,18 @@ export default function UserPayment() {
   //console.log(login.rid);
   console.log("On Payment", registrationid);
   return (
-    <div className="container">
+    <div >
       <div className="py-4">
-        <table className="table border shadow">
+        <table className="table border shadow" style={{ backgroundColor: "#F0FFFF" }}>
           <thead>
             <tr>
-              <th scope="col">Total Amount Need to Payment</th>
+              <th scope="col" style={{ color: "green", fontSize: "25px" }}>Total Amount Need to Payment</th>
             </tr>
           </thead>
           {/*GetMapping*/}
           <tbody>
             <tr>
-              <td className="fa fa-inr">
+              <td className="fa fa-inr" style={{ color: "#2F4F4F", fontSize: "25px" }}>
                 {"\u20B9"}
                 {userss}
               </td>
@@ -109,15 +109,11 @@ export default function UserPayment() {
       </div>
       <div>
         <form
-          style={{
-            border: "1px solid black",
-            padding: "20px",
-            borderRadius: "15px",
-          }}
+          style={{ backgroundColor: "#F0FFFF" }}
           onSubmit={(e) => onSubmit(e)}
         >
           <div>
-            <label htmlFor="Name" className="form-label">
+            <label htmlFor="Name" className="form-label" style={{ color: "#2F4F4F", fontSize: "25px" }}>
               Credit Card Payment
             </label>
           </div>
@@ -135,7 +131,7 @@ export default function UserPayment() {
             <label htmlFor="cvv" className="form-label mb-9  mx-2"></label>
             <input
               type={"number"}
-              className="w-10 mx-9"
+              className="w-6 mx-9"
               placeholder="cvv"
               name="cvv"
               value={cvv}
@@ -183,10 +179,10 @@ export default function UserPayment() {
             <input type="hidden" name="usertype" value="user" />
           </div>
 
-          <button type="submit" className="btn btn-outline-primary">
+          <button type="submit" className="btn btn-success">
             Pay Now
           </button>
-          <Link className="btn btn-outline-danger mx-2" to="/">
+          <Link className="btn btn-danger mx-2" to="/">
             Cancel
           </Link>
         </form>

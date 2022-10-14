@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useInsertionEffect } from "react";
 import axios from "axios";
+import ImageTest from "../serviceprovider/UserDash.png";
 var locationid;
 var providerid;
 export default function UserDashboard() {
@@ -171,22 +172,28 @@ export default function UserDashboard() {
     navigate("/userpayment", { state: { login: login } });
   };
   return (
-    <div className="container">
+    <div>
       <div align="right">
-        <Link className="btn-btn-outline-light" to="/">
+        <Link className="btn btn-info" to="/">
           Logout
         </Link>
       </div>
-      <div
-        style={{
-          border: "1px solid black",
-          padding: "20px",
-          borderRadius: "15px",
-        }}
-      >
-        <div className="w-100 mb-9">
+
+      <div>
+        <img
+          src={ImageTest}
+          alt="BigCo Inc. logo"
+          style={{ height: "70vh", width: "210vh" }}
+          align="left"
+        />
+      </div>
+      <div style={{ backgroundColor: "#F0FFFF" }}>
+        <label style={{ color: "green", fontSize: "40px" }}>
+          Check Our Services Now
+        </label>
+        <div className="w-100 mb-9" style={{ color: "#2F4F4F", fontSize: "20px" }}>
           Select Location :{" "}
-          <select value={selected} onChange={handleChange}>
+          <select value={selected} onChange={handleChange} style={{ color: "#2F4F4F", fontSize: "20px" }}>
             {locations.map((location) => (
               <option key={location.aid} value={location.aid}>
                 {location.city}
@@ -197,9 +204,9 @@ export default function UserDashboard() {
         <div>
           <br />
         </div>
-        <div className="w-100 mb-9">
+        <div className="w-100 mb-9" style={{ color: "#2F4F4F", fontSize: "20px" }}>
           Select Service Provider :{" "}
-          <select value={selectedprovider} onChange={handleProviderChange}>
+          <select value={selectedprovider} onChange={handleProviderChange} style={{ color: "#2F4F4F", fontSize: "20px" }}>
             {providers.map((provider) => (
               <option key={provider.sid} value={provider.sid}>
                 {provider.sname}
@@ -211,11 +218,7 @@ export default function UserDashboard() {
           <br />
         </div>
         <div>
-          <button
-            type="submit"
-            className="btn btn-outline-primary"
-            onClick={onSubmit}
-          >
+          <button type="submit" className="btn btn-success" onClick={onSubmit}>
             Click Here To Get Services
           </button>
         </div>
@@ -223,10 +226,10 @@ export default function UserDashboard() {
           <table className="table border shadow">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Service</th>
-                <th scope="col">Price</th>
-                <th scope="col">Select Services</th>
+                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>#</th>
+                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>Service</th>
+                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>Price</th>
+                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>Select Services</th>
               </tr>
             </thead>
             {/*GetMapping*/}
@@ -261,7 +264,7 @@ export default function UserDashboard() {
           <form>
             <button
               type="submit"
-              className="btn btn-outline-primary "
+              className="btn btn-success "
               onClick={onClick}
             >
               Click Here To Subscribe above Serives

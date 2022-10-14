@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useInsertionEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import ImageTest from "../serviceprovider/Group.png";
 export default function UserLogin() {
   let navigate = useNavigate();
 
@@ -50,19 +51,32 @@ const loadUsers=async()=>{
     setUser(result.data);
     // navigate("/userdashboard");
     //Passing Data between components
-    navigate("/userdashboard", { state: { login: result.data } });
+    console.log("test", result.data);
+    if (result.data !== null && result.data !== "") {
+      navigate("/userdashboard", { state: { login: result.data } });
+    } else {
+      alert("Username or Password is wrong, Please try again");
+      navigate("/userlogin");
+      return false;
+    }
   };
 
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{
+        backgroundImage: `url(${ImageTest})`,
+        height: "100vh",
+        backgroundSize: "100%",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">User Login</h2>
+          <h2 className="text-center m-4" style={{color:"white"}}>User Login</h2>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
-              <label htmlFor="emailid" className="form-label">
-                Email Id
-              </label>
+              <label htmlFor="emailid" className="form-label"></label>
               <input
                 type={"text"}
                 className="form-control"
@@ -73,9 +87,7 @@ const loadUsers=async()=>{
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
+              <label htmlFor="password" className="form-label"></label>
               <input
                 type={"password"}
                 className="form-control"
@@ -86,10 +98,10 @@ const loadUsers=async()=>{
               />
             </div>
 
-            <button type="submit" className="btn btn-outline-primary">
+            <button type="submit" className="btn btn-success">
               Submit
             </button>
-            <Link className="btn btn-outline-danger mx-2" to="/">
+            <Link className="btn btn-danger mx-2" to="/">
               Cancel
             </Link>
           </form>
