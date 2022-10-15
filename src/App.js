@@ -27,8 +27,11 @@ function App() {
           <Route exact path="/userdashboard" element={<UserDashboard />} />
           <Route exact path="/admindashboard" element={<AdminDashboard />} />
           <Route exact path="/userpayment" element={<UserPayment />} />
-          <Route exact path="/registerserviceprovider" element={<RegisterServiceProvider />} />
-          
+          <Route
+            exact
+            path="/registerserviceprovider"
+            element={<RegisterServiceProvider />}
+          />
         </Routes>
         <Footer />
       </Router>

@@ -4,9 +4,6 @@ import { useEffect, useState, useInsertionEffect } from "react";
 import axios from "axios";
 import ImageTest from "../serviceprovider/UserDash.png";
 export default function RegisterAdmin() {
-
-  
-
   let navigate = useNavigate();
   const [registration, setUser] = useState({
     firstname: "",
@@ -108,7 +105,7 @@ export default function RegisterAdmin() {
               <div className="mb-3">
                 <label htmlFor="mobileno" className="form-label"></label>
                 <input
-                  type={"text"}
+                  type={"number"}
                   className="form-control"
                   placeholder="Enter your Mobile Number"
                   name="mobileno"
@@ -155,7 +152,7 @@ export default function RegisterAdmin() {
               <button type="submit" className="btn btn-success">
                 Submit
               </button>
-              <Link className="btn btn-outline-danger mx-2" to="/">
+              <Link className="btn btn-outline-danger mx-2" to="/admindashboard">
                 Cancel
               </Link>
             </form>

@@ -23,23 +23,20 @@ export default function RegisterServiceProvider() {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log("In validation", registration);
-    if (registration.rid === "" || registration.rid == null) {
-      alert("Please Enter First Name");
-      return false;
-    } else if (registration.sname === "" || registration.sname == null) {
-      alert("Please Enter Last Name");
+    if (registration.sname === "" || registration.sname == null) {
+      alert("Please Enter Service Provider Name");
       return false;
     } else if (registration.city === "" || registration.city == null) {
-      alert("Please Enter Mobile No.");
+      alert("Please Enter City");
       return false;
     } else if (
       registration.categoryname === "" ||
       registration.categoryname == null
     ) {
-      alert("Please Enter Email Id");
+      alert("Please Enter Category Name");
       return false;
     } else if (price === "" || price == null) {
-      alert("Please Enter Password");
+      alert("Please Enter Price");
       return false;
     } else {
       const result = await axios.post(
@@ -47,7 +44,7 @@ export default function RegisterServiceProvider() {
         registration
       );
 
-      console.log(result.data);
+      console.log("In register service provider", result.data);
       navigate("/admindashboard");
     }
   };
@@ -60,7 +57,7 @@ export default function RegisterServiceProvider() {
             className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow"
             style={{ backgroundColor: "#F0FFFF" }}
           >
-            <h2 className="text-center m-4">Register User</h2>
+            <h2 className="text-center m-4">Register Service Provider</h2>
             <form onSubmit={(e) => onSubmit(e)}>
               <div>
                 <input type="hidden" name="rid" value="user" />
@@ -70,7 +67,7 @@ export default function RegisterServiceProvider() {
                 <input
                   type={"text"}
                   className="form-control"
-                  placeholder="sname"
+                  placeholder="Enter Service Provider Name"
                   name="sname"
                   value={sname}
                   onChange={(e) => onInputChange(e)}
@@ -81,7 +78,7 @@ export default function RegisterServiceProvider() {
                 <input
                   type={"text"}
                   className="form-control"
-                  placeholder="cityr"
+                  placeholder="Enter City"
                   name="city"
                   value={city}
                   onChange={(e) => onInputChange(e)}
@@ -92,7 +89,7 @@ export default function RegisterServiceProvider() {
                 <input
                   type={"text"}
                   className="form-control"
-                  placeholder="categoryname"
+                  placeholder="Enter Category Name"
                   name="categoryname"
                   value={categoryname}
                   onChange={(e) => onInputChange(e)}
@@ -101,9 +98,9 @@ export default function RegisterServiceProvider() {
               <div className="mb-3">
                 <label htmlFor="price" className="form-label"></label>
                 <input
-                  type={"numeric"}
+                  type={"number"}
                   className="form-control"
-                  placeholder="Enter your Password"
+                  placeholder="Enter Price"
                   name="price"
                   value={price}
                   onChange={(e) => onInputChange(e)}
@@ -113,7 +110,10 @@ export default function RegisterServiceProvider() {
               <button type="submit" className="btn btn-success">
                 Submit
               </button>
-              <Link className="btn btn-outline-danger mx-2" to="/">
+              <Link
+                className="btn btn-outline-danger mx-2"
+                to="/admindashboard"
+              >
                 Cancel
               </Link>
             </form>

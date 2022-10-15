@@ -73,14 +73,14 @@ export default function RegisterUser() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div align="right" >
+      <div align="right">
         <div className="row">
-          <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow" style={{ backgroundColor: "#F0FFFF" }}>
+          <div
+            className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow"
+            style={{ backgroundColor: "#F0FFFF" }}
+          >
             <h2 className="text-center m-4">Register User</h2>
-            <form
-              onSubmit={(e) => onSubmit(e)}
-              
-            >
+            <form onSubmit={(e) => onSubmit(e)}>
               <div className="mb-3">
                 <label htmlFor="Name" className="form-label"></label>
                 <input
@@ -106,7 +106,7 @@ export default function RegisterUser() {
               <div className="mb-3">
                 <label htmlFor="mobileno" className="form-label"></label>
                 <input
-                  type={"text"}
+                  type={"number"}
                   className="form-control"
                   placeholder="Enter your Mobile Number"
                   name="mobileno"
