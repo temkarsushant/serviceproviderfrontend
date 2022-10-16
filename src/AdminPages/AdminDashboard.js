@@ -124,14 +124,14 @@ export default function AdminDashboard() {
                 <td>{user.userrequest}</td>
                 <td>
                   <button
-                    className="btn btn-primary mx-2"
+                    className="btn btn-success mx-2"
                     value={user.usid}
                     onClick={onClickApprove}
                   >
                     Approve
                   </button>
                   <button
-                    className="btn btn-primary mx-2"
+                    className="btn btn-danger mx-2"
                     value={user.usid}
                     onClick={onClickReject}
                   >

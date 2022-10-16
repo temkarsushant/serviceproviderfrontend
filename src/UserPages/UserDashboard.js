@@ -5,15 +5,19 @@ import axios from "axios";
 import ImageTest from "../serviceprovider/UserDash.png";
 var locationid;
 var providerid;
+var registrationid;
+var temprid;
 export default function UserDashboard() {
   //Passing Data between components
   const { state } = useLocation();
-  const { login } = state;
-  let registrationid = login.rid;
-
-  //console.log(login.rid);
-  console.log(registrationid);
-
+  if (state !== null) {
+    var { login } = state;
+    var rid = login.rid;
+  }
+  temprid = rid;
+  if (temprid != null && temprid !== "") {
+    registrationid = temprid;
+  }
   //Get Locations ---
   const [locations, setLocations] = useState([]);
 
@@ -126,7 +130,7 @@ export default function UserDashboard() {
 
     if (e.target.checked) {
       UserServicePojo.cid = e.target.value;
-      UserServicePojo.rid = login.rid;
+      UserServicePojo.rid = registrationid;
       UserServicePojo.userrequest = "Pending";
       UserServicePojo.isPayment = false;
       console.log("In userservice", UserServicePojo);
@@ -171,9 +175,31 @@ export default function UserDashboard() {
     e.preventDefault();
     navigate("/userpayment", { state: { login: login } });
   };
+
+  //Get My Services
+  //Get User Details
+  const [users, serUserRequests] = useState([]);
+
+  useInsertionEffect(() => {
+    loadUsers();
+  }, []);
+
+  const loadUsers = async () => {
+    console.log(registrationid);
+    const result = await axios.post(
+      "http://localhost:8080/getMyServices",
+      registrationid
+    );
+    console.log(result.data);
+    serUserRequests(result.data);
+  };
+
   return (
     <div>
       <div align="right">
+        <Link className="btn btn-info mx-2" to="/editprofile">
+          Edit Profile
+        </Link>
         <Link className="btn btn-info" to="/">
           Logout
         </Link>
@@ -183,7 +209,7 @@ export default function UserDashboard() {
         <img
           src={ImageTest}
           alt="BigCo Inc. logo"
-          style={{ height: "70vh", width: "210vh" }}
+          style={{ height: "70vh", width: "207vh" }}
           align="left"
         />
       </div>
@@ -191,9 +217,16 @@ export default function UserDashboard() {
         <label style={{ color: "green", fontSize: "40px" }}>
           Check Our Services Now
         </label>
-        <div className="w-100 mb-9" style={{ color: "#2F4F4F", fontSize: "20px" }}>
+        <div
+          className="w-100 mb-9"
+          style={{ color: "#2F4F4F", fontSize: "20px" }}
+        >
           Select Location :{" "}
-          <select value={selected} onChange={handleChange} style={{ color: "#2F4F4F", fontSize: "20px" }}>
+          <select
+            value={selected}
+            onChange={handleChange}
+            style={{ color: "#2F4F4F", fontSize: "20px" }}
+          >
             {locations.map((location) => (
               <option key={location.aid} value={location.aid}>
                 {location.city}
@@ -204,9 +237,16 @@ export default function UserDashboard() {
         <div>
           <br />
         </div>
-        <div className="w-100 mb-9" style={{ color: "#2F4F4F", fontSize: "20px" }}>
+        <div
+          className="w-100 mb-9"
+          style={{ color: "#2F4F4F", fontSize: "20px" }}
+        >
           Select Service Provider :{" "}
-          <select value={selectedprovider} onChange={handleProviderChange} style={{ color: "#2F4F4F", fontSize: "20px" }}>
+          <select
+            value={selectedprovider}
+            onChange={handleProviderChange}
+            style={{ color: "#2F4F4F", fontSize: "20px" }}
+          >
             {providers.map((provider) => (
               <option key={provider.sid} value={provider.sid}>
                 {provider.sname}
@@ -226,10 +266,18 @@ export default function UserDashboard() {
           <table className="table border shadow">
             <thead>
               <tr>
-                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>#</th>
-                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>Service</th>
-                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>Price</th>
-                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>Select Services</th>
+                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>
+                  #
+                </th>
+                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>
+                  Service
+                </th>
+                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>
+                  Price
+                </th>
+                <th scope="col" style={{ color: "#2F4F4F", fontSize: "15px" }}>
+                  Select Services
+                </th>
               </tr>
             </thead>
             {/*GetMapping*/}
@@ -270,6 +318,38 @@ export default function UserDashboard() {
               Click Here To Subscribe above Serives
             </button>
           </form>
+        </div>
+      </div>
+      <div>
+        <div className="py-4">
+          <table className="table border shadow">
+            <thead>
+              <label style={{ color: "green", fontSize: "22px" }}>
+                My Services
+              </label>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Service Provider</th>
+                <th scope="col">Service</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            {/*GetMapping*/}
+
+            <tbody>
+              {users.map((user, index) => (
+                <tr>
+                  <th scope="row" key={index}>
+                    {index + 1}
+                  </th>
+                  <td>{user.sname}</td>
+                  <td>{user.categoryname}</td>
+                  <td>{user.price}</td>
+                </tr>
+              ))}
+            </tbody>
+            {/*GetMapping*/}
+          </table>
         </div>
       </div>
     </div>

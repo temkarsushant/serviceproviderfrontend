@@ -13,6 +13,9 @@ import Footer from "./layout/Footer";
 import AdminDashboard from "./AdminPages/AdminDashboard";
 import RegisterAdmin from "./AdminPages/RegisterAdmin";
 import RegisterServiceProvider from "./AdminPages/RegisterServiceProvider";
+import ChangePassword from "./UserPages/ChangePassword";
+import Feedback from "./UserPages/Feedback";
+import EditProfile from "./UserPages/EditProfile";
 function App() {
   return (
     <div className="App">
@@ -32,6 +35,9 @@ function App() {
             path="/registerserviceprovider"
             element={<RegisterServiceProvider />}
           />
+          <Route exact path="/changepassword" element={<ChangePassword />} />
+          <Route exact path="/feedback" element={<Feedback />} />
+          <Route exact path="/editprofile" element={<EditProfile />} />
         </Routes>
         <Footer />
       </Router>

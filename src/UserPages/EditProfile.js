@@ -4,15 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ImageTest from "../serviceprovider/reg6.png";
 import ImageTest2 from "../serviceprovider/reg2.png";
-export default function RegisterUser() {
+export default function EditProfile() {
   let navigate = useNavigate();
   const [registration, setUser] = useState({
     firstname: "",
     lastname: "",
     mobileno: "",
     emailid: "",
-    password: "",
-    confirmpassword: "",
+
     usertype: "User",
   });
 
@@ -21,8 +20,7 @@ export default function RegisterUser() {
     lastname,
     mobileno,
     emailid,
-    password,
-    confirmpassword,
+
     usertype,
   } = registration;
 
@@ -51,44 +49,22 @@ export default function RegisterUser() {
     } else if (registration.emailid.search("@") == -1) {
       alert("Email Id Must contain @ symbol");
       return false;
-    } else if (registration.password === "" || registration.password == null) {
-      alert("Please Enter Password");
-      return false;
-    } else if (registration.password.length < 8) {
-      alert("Password must contain 8 characters or more than 8 characters");
-      return false;
-    } else if (
-      registration.confirmpassword === "" ||
-      registration.confirmpassword == null
-    ) {
-      alert("Please Enter Confirmed Password");
-      return false;
-    } else if (registration.password !== registration.confirmpassword) {
-      alert("Password And Confirmed Password is not matching");
-      return false;
     } else {
-      await axios.post("http://localhost:8080/registration", registration);
+      await axios.post("http://localhost:8080/editprofile", registration);
 
-      navigate("/");
+      navigate("/userdashboard");
     }
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: `url("${ImageTest}")`,
-
-        backgroundSize: "100%",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+    <div>
       <div align="right">
         <div className="row">
           <div
             className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow"
             style={{ backgroundColor: "#F0FFFF" }}
           >
-            <h2 className="text-center m-4">Register User</h2>
+            <h2 className="text-center m-4">Edit Profile</h2>
             <form onSubmit={(e) => onSubmit(e)}>
               <div className="mb-3">
                 <label htmlFor="Name" className="form-label"></label>
@@ -134,38 +110,13 @@ export default function RegisterUser() {
                   onChange={(e) => onInputChange(e)}
                 />
               </div>
-              <div className="mb-3">
-                <label htmlFor="mobileno" className="form-label"></label>
-                <input
-                  type={"password"}
-                  className="form-control"
-                  placeholder="Enter your Password"
-                  name="password"
-                  value={password}
-                  onChange={(e) => onInputChange(e)}
-                />
-              </div>
-              <label style={{ color: "red", fontSize: "10px" }}>
-                Password must be consist of at least 8 characters.
-              </label>
-              <div className="mb-3">
-                <label htmlFor="confirmpassword" className="form-label"></label>
-                <input
-                  type={"password"}
-                  className="form-control"
-                  placeholder="Enter your Password Again"
-                  name="confirmpassword"
-                  value={confirmpassword}
-                  onChange={(e) => onInputChange(e)}
-                />
-              </div>
               <div>
                 <input type="hidden" name="usertype" value="user" />
               </div>
               <button type="submit" className="btn btn-success">
                 Submit
               </button>
-              <Link className="btn btn-outline-danger mx-2" to="/">
+              <Link className="btn btn-outline-danger mx-2" to="/userdashboard">
                 Cancel
               </Link>
             </form>

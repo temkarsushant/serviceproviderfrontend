@@ -49,9 +49,9 @@ export default function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/feedback">
                 Feedback
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

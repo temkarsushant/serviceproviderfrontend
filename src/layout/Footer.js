@@ -119,11 +119,11 @@ export default function Footer() {
                 </p>
                 <p>
                   <MDBIcon icon="envelope" className="me-3" />
-                  sushant.temkar@yash.com
+                  Sushant.Temkar@yash.com
                 </p>
                 <p>
                   <MDBIcon icon="envelope" className="me-3" />
-                  Rupali.patil@yash.com
+                  Rupali.Patil@yash.com
                 </p>
                 <p>
                   <MDBIcon icon="phone" className="me-3" /> +91 7972501198

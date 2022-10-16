@@ -54,51 +54,67 @@ export default function UserPayment() {
     if (payment.cardnumber === "" || payment.cardnumber == null) {
       alert("Please Enter Card Number");
       return false;
-    } else if (payment.mm === "" || payment.mm == null) {
-      alert("Please Enter Month on mm format");
-      return false;
-    } else if (payment.yy === "" || payment.yy == null) {
-      alert("Please Enter Year in YY format");
+    } else if (payment.cardnumber.length != 16) {
+      alert("Invalid Card Details, Please Enter 16 digit Card Number");
       return false;
     } else if (payment.cvv === "" || payment.cvv == null) {
       alert("Please Enter CVV");
       return false;
+    } else if (payment.cvv.length != 3) {
+      alert("Invalid Details, Please Enter your 3 digit CVV");
+      return false;
     } else if (payment.name === "" || payment.name == null) {
       alert("Please Enter your name on card");
+      return false;
+    } else if (payment.mm === "" || payment.mm == null) {
+      alert("Please Enter Month on mm format");
+      return false;
+    } else if (payment.mm.length != 2) {
+      alert("Invalid Details, Please Enter Month in mm format");
+      return false;
+    } else if (payment.yy === "" || payment.yy == null) {
+      alert("Please Enter Year in YYYY format");
+      return false;
+    } else if (payment.yy.length != 4) {
+      alert("Invalid Details, Please Enter Year in YYYY format");
       return false;
     } else {
       console.log("In post", UserServicePojo.rid);
       payment.rid = UserServicePojo.rid;
       payment.isPayment = true;
       await axios.post("http://localhost:8080/serUserpayment", payment);
-      var ss = prompt("Please confirm to proceed");
-      console.log(ss);
-      var a = window.confirm("Please type Confirm to proceed!");
+      var a = window.confirm("Please Confirm to proceed!");
       if (a) {
-        alert(
-          "Payment Successfully, Please Login again to Enjoy more services"
-        );
+        alert("Payment Successfully, Enjoy more services");
       } else {
-        alert("Payment Failed, Please try again after login");
+        alert("Payment Failed, Please try again");
       }
-      navigate("/");
+      navigate("/userdashboard");
     }
   };
   //console.log(login.rid);
   console.log("On Payment", registrationid);
   return (
-    <div >
+    <div>
       <div className="py-4">
-        <table className="table border shadow" style={{ backgroundColor: "#F0FFFF" }}>
+        <table
+          className="table border shadow"
+          style={{ backgroundColor: "#F0FFFF" }}
+        >
           <thead>
             <tr>
-              <th scope="col" style={{ color: "green", fontSize: "25px" }}>Total Amount Need to Payment</th>
+              <th scope="col" style={{ color: "green", fontSize: "25px" }}>
+                Total Amount Need to Payment
+              </th>
             </tr>
           </thead>
           {/*GetMapping*/}
           <tbody>
             <tr>
-              <td className="fa fa-inr" style={{ color: "#2F4F4F", fontSize: "25px" }}>
+              <td
+                className="fa fa-inr"
+                style={{ color: "#2F4F4F", fontSize: "25px" }}
+              >
                 {"\u20B9"}
                 {userss}
               </td>
@@ -113,7 +129,11 @@ export default function UserPayment() {
           onSubmit={(e) => onSubmit(e)}
         >
           <div>
-            <label htmlFor="Name" className="form-label" style={{ color: "#2F4F4F", fontSize: "25px" }}>
+            <label
+              htmlFor="Name"
+              className="form-label"
+              style={{ color: "#2F4F4F", fontSize: "25px" }}
+            >
               Credit Card Payment
             </label>
           </div>
@@ -165,7 +185,7 @@ export default function UserPayment() {
               maxLength="2"
               className="w-5 mx-2"
               style={{ width: "10%" }}
-              placeholder="YY"
+              placeholder="YYYY"
               name="yy"
               value={yy}
               pattern="[1-9]{1}[0-9]{9}"
@@ -182,7 +202,7 @@ export default function UserPayment() {
           <button type="submit" className="btn btn-success">
             Pay Now
           </button>
-          <Link className="btn btn-danger mx-2" to="/">
+          <Link className="btn btn-danger mx-2" to="/userdashboard">
             Cancel
           </Link>
         </form>

@@ -4,16 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ImageTest from "../serviceprovider/reg6.png";
 import ImageTest2 from "../serviceprovider/reg2.png";
-export default function RegisterUser() {
+
+export default function Feedback() {
   let navigate = useNavigate();
   const [registration, setUser] = useState({
     firstname: "",
     lastname: "",
     mobileno: "",
     emailid: "",
-    password: "",
-    confirmpassword: "",
-    usertype: "User",
+    feedback: "",
   });
 
   const {
@@ -21,9 +20,8 @@ export default function RegisterUser() {
     lastname,
     mobileno,
     emailid,
-    password,
-    confirmpassword,
-    usertype,
+
+    feedback,
   } = registration;
 
   const onInputChange = (e) => {
@@ -42,53 +40,28 @@ export default function RegisterUser() {
     } else if (registration.mobileno === "" || registration.mobileno == null) {
       alert("Please Enter Mobile No.");
       return false;
-    } else if (registration.mobileno.length !== 10) {
-      alert("Mobile Number must have 10 numbers");
-      return false;
     } else if (registration.emailid === "" || registration.emailid == null) {
       alert("Please Enter Email Id");
       return false;
-    } else if (registration.emailid.search("@") == -1) {
-      alert("Email Id Must contain @ symbol");
-      return false;
-    } else if (registration.password === "" || registration.password == null) {
-      alert("Please Enter Password");
-      return false;
-    } else if (registration.password.length < 8) {
-      alert("Password must contain 8 characters or more than 8 characters");
-      return false;
-    } else if (
-      registration.confirmpassword === "" ||
-      registration.confirmpassword == null
-    ) {
-      alert("Please Enter Confirmed Password");
-      return false;
-    } else if (registration.password !== registration.confirmpassword) {
-      alert("Password And Confirmed Password is not matching");
+    } else if (registration.feedback === "" || registration.feedback == null) {
+      alert("Please Enter Feedback");
       return false;
     } else {
-      await axios.post("http://localhost:8080/registration", registration);
+      await axios.post("http://localhost:8080/feedback", registration);
 
       navigate("/");
     }
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: `url("${ImageTest}")`,
-
-        backgroundSize: "100%",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+    <div>
       <div align="right">
         <div className="row">
           <div
             className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow"
             style={{ backgroundColor: "#F0FFFF" }}
           >
-            <h2 className="text-center m-4">Register User</h2>
+            <h2 className="text-center m-4">Feedback Form</h2>
             <form onSubmit={(e) => onSubmit(e)}>
               <div className="mb-3">
                 <label htmlFor="Name" className="form-label"></label>
@@ -134,34 +107,19 @@ export default function RegisterUser() {
                   onChange={(e) => onInputChange(e)}
                 />
               </div>
+
               <div className="mb-3">
-                <label htmlFor="mobileno" className="form-label"></label>
+                <label htmlFor="feedback" className="form-label"></label>
                 <input
-                  type={"password"}
+                  type={"feedback"}
                   className="form-control"
-                  placeholder="Enter your Password"
-                  name="password"
-                  value={password}
+                  placeholder="Enter your Feedback Here"
+                  name="feedback"
+                  value={feedback}
                   onChange={(e) => onInputChange(e)}
                 />
               </div>
-              <label style={{ color: "red", fontSize: "10px" }}>
-                Password must be consist of at least 8 characters.
-              </label>
-              <div className="mb-3">
-                <label htmlFor="confirmpassword" className="form-label"></label>
-                <input
-                  type={"password"}
-                  className="form-control"
-                  placeholder="Enter your Password Again"
-                  name="confirmpassword"
-                  value={confirmpassword}
-                  onChange={(e) => onInputChange(e)}
-                />
-              </div>
-              <div>
-                <input type="hidden" name="usertype" value="user" />
-              </div>
+
               <button type="submit" className="btn btn-success">
                 Submit
               </button>

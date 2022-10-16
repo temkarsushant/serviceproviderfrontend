@@ -111,7 +111,7 @@ export default function RegisterServiceProvider() {
                 Submit
               </button>
               <Link
-                className="btn btn-outline-danger mx-2"
+                className="btn btn-danger mx-2"
                 to="/admindashboard"
               >
                 Cancel

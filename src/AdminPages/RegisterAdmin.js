@@ -41,11 +41,20 @@ export default function RegisterAdmin() {
     } else if (registration.mobileno === "" || registration.mobileno == null) {
       alert("Please Enter Mobile No.");
       return false;
+    } else if (registration.mobileno.length !== 10) {
+      alert("Mobile Number must have 10 numbers");
+      return false;
     } else if (registration.emailid === "" || registration.emailid == null) {
       alert("Please Enter Email Id");
       return false;
+    } else if (registration.emailid.search("@") == -1) {
+      alert("Email Id Must contain @ symbol");
+      return false;
     } else if (registration.password === "" || registration.password == null) {
       alert("Please Enter Password");
+      return false;
+    } else if (registration.password.length < 8) {
+      alert("Password must contain 8 characters or more than 8 characters");
       return false;
     } else if (
       registration.confirmpassword === "" ||
@@ -135,6 +144,9 @@ export default function RegisterAdmin() {
                   onChange={(e) => onInputChange(e)}
                 />
               </div>
+              <label style={{ color: "red", fontSize: "10px" }}>
+                Password must be consist of at least 8 characters.
+              </label>
               <div className="mb-3">
                 <label htmlFor="confirmpassword" className="form-label"></label>
                 <input
@@ -152,7 +164,10 @@ export default function RegisterAdmin() {
               <button type="submit" className="btn btn-success">
                 Submit
               </button>
-              <Link className="btn btn-outline-danger mx-2" to="/admindashboard">
+              <Link
+                className="btn btn-outline-danger mx-2"
+                to="/admindashboard"
+              >
                 Cancel
               </Link>
             </form>
