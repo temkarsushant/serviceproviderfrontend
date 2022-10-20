@@ -16,6 +16,10 @@ import RegisterServiceProvider from "./AdminPages/RegisterServiceProvider";
 import ChangePassword from "./UserPages/ChangePassword";
 import Feedback from "./UserPages/Feedback";
 import EditProfile from "./UserPages/EditProfile";
+import AboutUs from "./layout/AboutUs";
+import DigirtalHDCable from "./layout/DigitalHDCable";
+import InternateIp from "./layout/InternateIP";
+import HighSpeedCable from "./layout/HighSpeedCable";
 function App() {
   return (
     <div className="App">
@@ -38,6 +42,12 @@ function App() {
           <Route exact path="/changepassword" element={<ChangePassword />} />
           <Route exact path="/feedback" element={<Feedback />} />
           <Route exact path="/editprofile" element={<EditProfile />} />
+
+          <Route exact path="/aboutus" element={<AboutUs />} />
+          <Route exact path="/digitalhdcable" element={<DigirtalHDCable />} />
+          <Route exact path="/internateip" element={<InternateIp />} />
+          <Route exact path="/highspeedcable" element={<HighSpeedCable />} />
+          
         </Routes>
         <Footer />
       </Router>

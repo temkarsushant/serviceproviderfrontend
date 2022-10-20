@@ -76,6 +76,7 @@ export default function UserDashboard() {
 
   const [serviceProviders, setCategoriesgetdata] = useState([]);
 
+  /*useInsertionEffect is introduced in React 18. It has the same signature as useEffect , but it fires synchronously before all DOM mutations. i.e. it is fired before useLayoutEffect . It is used to inject styles into the DOM before reading layout.*/
   useInsertionEffect(() => {
     onSubmit();
   }, []);

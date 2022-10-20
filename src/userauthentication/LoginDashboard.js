@@ -25,7 +25,7 @@ export default function LoginDashboard() {
         style={{
           backgroundImage: `url(${Telecom})`,
           height: "80vh",
-          width: "210vh",
+          width: "230vh",
           backgroundSize: "100%",
           backgroundRepeat: "no-repeat",
         }}
@@ -77,6 +77,9 @@ export default function LoginDashboard() {
                   users, Tripleplay provides upto100 Mbps speed in a very low
                   price.
                 </Card.Text>
+                <Link className="text-danger" to="/highspeedcable">
+                  Know More
+                </Link>
               </Card.Body>
               <Card.Footer>
                 <small className="text-muted">Yash Service Provider</small>
@@ -100,6 +103,9 @@ export default function LoginDashboard() {
                   company providing multiscreen service with android box in
                   India{" "}
                 </Card.Text>
+                <Link className="text-danger" to="/internateip">
+                  Know More
+                </Link>
               </Card.Body>
               <Card.Footer>
                 <small className="text-muted">Yash Service Provider</small>
@@ -122,6 +128,9 @@ export default function LoginDashboard() {
                   We gives more than 300 Digital and HD channels not as much as
                   cost of DTH and have tie-up with numerous MSO.
                 </Card.Text>
+                <Link className="text-danger" to="/digitalhdcable">
+                  Know More
+                </Link>
               </Card.Body>
               <Card.Footer>
                 <small className="text-muted">Yash Service Provider</small>

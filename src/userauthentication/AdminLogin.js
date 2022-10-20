@@ -37,7 +37,7 @@ export default function AdminLogin() {
       });
     console.log(result.data);
     // if(result.data)
-   // setUser(result.data);
+    // setUser(result.data);
     // navigate("/userdashboard");
     //Passing Data between components
     console.log("test", result.data);
